@@ -57,7 +57,7 @@ export default function About() {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">À propos de nous</h1>
             <p className="text-xl text-gray-200">
-              Depuis plus de 10 ans, nous accompagnons les organisations dans leur transformation et leur montée en compétences.
+              Depuis plus de 5 ans, nous accompagnons les organisations dans leur transformation et leur montée en compétences.
             </p>
           </motion.div>
         </div>
@@ -113,15 +113,15 @@ export default function About() {
               </div>
               <div className="mt-6 flex flex-wrap gap-6">
                 <div>
-                  <span className="text-3xl font-bold text-accent">10+</span>
+                  <span className="text-3xl font-bold text-accent">5+</span>
                   <p className="text-sm text-gray-500">Années d'expertise</p>
                 </div>
                 <div>
-                  <span className="text-3xl font-bold text-accent">500+</span>
+                  <span className="text-3xl font-bold text-accent">50+</span>
                   <p className="text-sm text-gray-500">Professionnels formés</p>
                 </div>
                 <div>
-                  <span className="text-3xl font-bold text-accent">50+</span>
+                  <span className="text-3xl font-bold text-accent">3+</span>
                   <p className="text-sm text-gray-500">Organisations partenaires</p>
                 </div>
               </div>
@@ -136,7 +136,7 @@ export default function About() {
               <div className="aspect-video bg-white rounded-xl shadow-lg flex items-center justify-center">
                 <div className="text-center">
                   <span className="text-6xl mb-4 block">🚀</span>
-                  <h3 className="text-xl font-bold text-primary">10 ans d'innovation</h3>
+                  <h3 className="text-xl font-bold text-primary">5 ans d'innovation</h3>
                   <p className="text-gray-500">Au service de votre réussite</p>
                 </div>
               </div>

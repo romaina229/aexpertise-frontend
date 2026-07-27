@@ -74,21 +74,21 @@ export default function Contact() {
                     <Phone className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold text-gray-800">Téléphone</p>
-                      <p className="text-gray-600">+229 01 23 45 67</p>
+                      <p className="text-gray-600">+229 01 40 15 24 43</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Mail className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold text-gray-800">Email</p>
-                      <p className="text-gray-600">contact@aaexpertise.com</p>
+                      <p className="text-gray-600">expertisea@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold text-gray-800">Adresse</p>
-                      <p className="text-gray-600">123 Avenue des Nations, Cotonou, Bénin</p>
+                      <p className="text-gray-600">Abomey-Calavi, Zogbadjè, Bénin</p>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export default function Contact() {
                 
                 {success && (
                   <div className="bg-green-50 text-green-800 p-4 rounded-lg mb-6">
-                    ✅ Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
+                    Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
                   </div>
                 )}
                 
