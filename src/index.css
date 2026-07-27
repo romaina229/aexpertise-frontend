@@ -1,9 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* OU Tailwind v4 */
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 @layer base {
   /* Reset et styles de base */

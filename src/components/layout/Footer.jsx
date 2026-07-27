@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">A+ Expertise</h3>
+            <h3 className="text-2xl font-bold mb-4">Expertise A+</h3>
             <p className="text-gray-300 mb-4">
               Accompagnement des ONG, institutions et entreprises dans le renforcement des capacités et la digitalisation.
             </p>
@@ -89,7 +89,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-primary-light mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-300 text-sm">
-            © {new Date().getFullYear()} A+ Expertise. Tous droits réservés.
+            © {new Date().getFullYear()} Expertise A+. Tous droits réservés.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/mentions-legales" className="text-gray-300 text-sm hover:text-accent transition-colors">
