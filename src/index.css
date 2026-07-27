@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* OU Tailwind v4 */
+@import "tailwindcss";
+
 @layer base {
   /* Reset et styles de base */
   html {
