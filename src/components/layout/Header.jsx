@@ -36,8 +36,8 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-3xl font-black text-primary">A+</span>
             <span className="text-xl font-bold text-primary-light">Expertise</span>
+            <span className="text-3xl font-black text-primary">A+</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -102,7 +102,7 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Fondée en 2013, À+ Expertise est née de la volonté de répondre aux besoins croissants des organisations en matière de renforcement des capacités et de digitalisation.
+                  Fondée en 2013, Expertise A+ est née de la volonté de répondre aux besoins croissants des organisations en matière de renforcement des capacités et de digitalisation.
                 </p>
                 <p>
                   Depuis notre création, nous avons accompagné plus de 50 organisations dans divers secteurs : ONG, institutions publiques, entreprises privées et programmes de développement.

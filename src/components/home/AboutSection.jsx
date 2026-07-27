@@ -35,7 +35,7 @@ export default function AboutSection() {
               À propos
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              Nous sommes À+ Expertise
+              Nous sommes Expertise A+
             </h2>
             <p className="text-lg text-gray-600 mb-6">
               Depuis plus de 10 ans, nous accompagnons les organisations dans leur transformation et leur montée en compétences.

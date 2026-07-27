@@ -26,7 +26,7 @@ const testimonials = [
     name: 'Aminata Diallo',
     position: 'Chef de Projet',
     organization: 'Programme de Développement',
-    content: 'Le consulting stratégique de À+ Expertise nous a permis d\'optimiser nos processus et d\'atteindre nos objectifs.',
+    content: 'Le consulting stratégique de Expertise A+ nous a permis d\'optimiser nos processus et d\'atteindre nos objectifs.',
     rating: 4,
     image: 'https://ui-avatars.com/api/?name=Aminata+Diallo&size=100&background=1a3c5e&color=fff'
   }

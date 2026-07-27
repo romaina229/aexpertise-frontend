@@ -37,7 +37,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl mb-10 text-gray-200"
           >
-            À+ Expertise accompagne les ONG, institutions, entreprises et programmes dans le renforcement des capacités, la digitalisation de la collecte de données et la gestion efficace des projets.
+            Expertise A+ accompagne les ONG, institutions, entreprises et programmes dans le renforcement des capacités, la digitalisation de la collecte de données et la gestion efficace des projets.
           </motion.p>
           
           <motion.div
@@ -70,7 +70,7 @@ export default function HeroSection() {
             className="mt-12 flex flex-wrap justify-center gap-8 text-sm"
           >
             <div className="flex items-center gap-2">
-              <span className="text-accent text-2xl font-bold">10+</span>
+              <span className="text-accent text-2xl font-bold">5+</span>
               <span className="text-gray-300">Années d'expérience</span>
             </div>
             <div className="flex items-center gap-2">
@@ -78,7 +78,7 @@ export default function HeroSection() {
               <span className="text-gray-300">Professionnels formés</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-accent text-2xl font-bold">50+</span>
+              <span className="text-accent text-2xl font-bold">5+</span>
               <span className="text-gray-300">Organisations partenaires</span>
             </div>
           </motion.div>

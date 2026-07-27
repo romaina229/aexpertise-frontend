@@ -10,7 +10,7 @@ const stats = [
   },
   {
     icon: Briefcase,
-    value: '50+',
+    value: '5+',
     label: 'Organisations accompagnées',
     color: 'from-green-500 to-green-600'
   },
@@ -22,7 +22,7 @@ const stats = [
   },
   {
     icon: Calendar,
-    value: '10+',
+    value: '5+',
     label: "Années d'expérience",
     color: 'from-orange-500 to-orange-600'
   }
