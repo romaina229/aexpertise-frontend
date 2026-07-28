@@ -39,7 +39,7 @@ export default function Formations() {
       const response = await api.get('/formations')
       setFormations(response.data)
     } catch (error) {
-      console.error('Erreur:', error)
+      //console.error('Erreur:', error)
     } finally {
       setLoading(false)
     }

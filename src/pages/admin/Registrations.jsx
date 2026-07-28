@@ -66,7 +66,7 @@ export default function Registrations() {
         setSelectedRegistration({ ...selectedRegistration, status })
       }
     } catch (error) {
-      console.error('Erreur:', error)
+      //console.error('Erreur:', error)
       alert('Erreur lors de la mise à jour du statut')
     }
   }

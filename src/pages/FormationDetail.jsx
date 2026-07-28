@@ -52,7 +52,7 @@ export default function FormationDetail() {
         data.program = ensureArray(data.program)
         setFormation(data)
       } catch (error) {
-        console.error('Erreur:', error)
+        //console.error('Erreur:', error)
         setFormation({
           id: parseInt(id),
           title: 'Gestion de projet agile',

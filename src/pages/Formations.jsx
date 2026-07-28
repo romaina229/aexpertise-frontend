@@ -24,7 +24,7 @@ export default function Formations() {
       setFormations(response.data)
       setFilteredFormations(response.data)
     } catch (error) {
-      console.error('Erreur:', error)
+      //console.error('Erreur:', error)
       const mockData = [
         {
           id: 1,

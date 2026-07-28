@@ -25,7 +25,7 @@ export default function Messages() {
       const response = await api.get('/contacts')
       setMessages(response.data)
     } catch (error) {
-      console.error('Erreur:', error)
+      //console.error('Erreur:', error)
       setMessages([
         {
           id: 1,
@@ -56,7 +56,7 @@ export default function Messages() {
       await api.post(`/contacts/${id}/read`)
       fetchMessages()
     } catch (error) {
-      console.error('Erreur:', error)
+      //console.error('Erreur:', error)
     }
   }
 
@@ -66,7 +66,7 @@ export default function Messages() {
         await api.delete(`/contacts/${id}`)
         fetchMessages()
       } catch (error) {
-        console.error('Erreur:', error)
+        //console.error('Erreur:', error)
       }
     }
   }

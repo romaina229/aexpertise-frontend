@@ -54,7 +54,7 @@ export default function Login() {
         setError('Réponse invalide du serveur')
       }
     } catch (err) {
-      console.error('Erreur de connexion:', err)
+      //console.error('Erreur de connexion:', err)
       
       // Gérer les erreurs
       if (err.response) {
@@ -100,7 +100,7 @@ export default function Login() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-primary">À+ Expertise</h1>
+          <h1 className="text-3xl font-bold text-primary"> Expertise A+</h1>
           <p className="text-gray-500 mt-2">Panel d'administration</p>
         </div>
 
@@ -130,7 +130,7 @@ export default function Login() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="admin@aaexpertise.com"
+                placeholder="exemple@gmail.com"
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
