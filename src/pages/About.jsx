@@ -4,7 +4,7 @@ import { Target, Lightbulb, Heart, Users, CheckCircle, ArrowRight } from 'lucide
 
 const teamMembers = [
   {
-    name: 'Dr. Amadou Diop',
+    name: 'Jonas Towanou AGBOKO',
     position: 'Fondateur & Directeur',
     image: 'https://ui-avatars.com/api/?name=Amadou+Diop&size=200&background=1a3c5e&color=fff'
   },
@@ -14,12 +14,12 @@ const teamMembers = [
     image: 'https://ui-avatars.com/api/?name=Fatou+Sow&size=200&background=1a3c5e&color=fff'
   },
   {
-    name: 'Ibrahim Traoré',
+    name: 'Romain AKPO',
     position: 'Expert en Digitalisation',
     image: 'https://ui-avatars.com/api/?name=Ibrahim+Traoré&size=200&background=1a3c5e&color=fff'
   },
   {
-    name: 'Awa Ndiaye',
+    name: 'Raphaël SOKE',
     position: 'Consultante Senior',
     image: 'https://ui-avatars.com/api/?name=Awa+Ndiaye&size=200&background=1a3c5e&color=fff'
   }
@@ -102,10 +102,10 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Fondée en 2013, Expertise A+ est née de la volonté de répondre aux besoins croissants des organisations en matière de renforcement des capacités et de digitalisation.
+                  Fondée en 2022, Expertise A+ est née de la volonté de répondre aux besoins croissants des organisations en matière de renforcement des capacités et de digitalisation.
                 </p>
                 <p>
-                  Depuis notre création, nous avons accompagné plus de 50 organisations dans divers secteurs : ONG, institutions publiques, entreprises privées et programmes de développement.
+                  Depuis notre création, nous avons accompagné plus de 3 organisations dans divers secteurs : ONG, institutions publiques, entreprises privées et programmes de développement.
                 </p>
                 <p>
                   Notre approche combine l'expertise technique, la pédagogie innovante et l'accompagnement personnalisé pour garantir des résultats concrets et durables.
@@ -117,7 +117,7 @@ export default function About() {
                   <p className="text-sm text-gray-500">Années d'expertise</p>
                 </div>
                 <div>
-                  <span className="text-3xl font-bold text-accent">50+</span>
+                  <span className="text-3xl font-bold text-accent">150+</span>
                   <p className="text-sm text-gray-500">Professionnels formés</p>
                 </div>
                 <div>

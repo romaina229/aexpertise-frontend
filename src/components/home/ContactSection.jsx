@@ -32,11 +32,11 @@ export default function ContactSection() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-accent" />
-                  <span>+229 0140152443</span>
+                  <span>+229 01 40 15 24 43</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-accent" />
-                  <span>contact@aexpertise.com</span>
+                  <span>aexpertise@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-accent" />

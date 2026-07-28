@@ -4,7 +4,7 @@ import { Users, Briefcase, Award, Calendar } from 'lucide-react'
 const stats = [
   {
     icon: Users,
-    value: '500+',
+    value: '150+',
     label: 'Professionnels formés',
     color: 'from-blue-500 to-blue-600'
   },

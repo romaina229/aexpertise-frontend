@@ -38,7 +38,7 @@ export default function AboutSection() {
               Nous sommes Expertise A+
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Depuis plus de 10 ans, nous accompagnons les organisations dans leur transformation et leur montée en compétences.
+              Depuis plus de 5 ans, nous accompagnons les organisations dans leur transformation et leur montée en compétences.
             </p>
             <p className="text-gray-600 mb-8">
               Notre approche combine expertise technique, pédagogie innovante et accompagnement personnalisé pour garantir des résultats concrets et durables.
@@ -97,8 +97,8 @@ export default function AboutSection() {
               </div>
             ))}
             <div className="col-span-2 bg-gradient-to-br from-primary to-primary-light text-white p-6 rounded-2xl shadow-lg text-center">
-              <p className="text-sm font-semibold">Rejoignez plus de 500 professionnels formés</p>
-              <p className="text-3xl font-bold mt-2">50+</p>
+              <p className="text-sm font-semibold">Rejoignez plus de 150 professionnels formés</p>
+              <p className="text-3xl font-bold mt-2">5+</p>
               <p className="text-sm">Organisations partenaires</p>
             </div>
           </motion.div>

@@ -74,7 +74,7 @@ export default function HeroSection() {
               <span className="text-gray-300">Années d'expérience</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-accent text-2xl font-bold">500+</span>
+              <span className="text-accent text-2xl font-bold">150+</span>
               <span className="text-gray-300">Professionnels formés</span>
             </div>
             <div className="flex items-center gap-2">

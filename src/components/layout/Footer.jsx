@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-//import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube } from 'react-icons/fa'
+import { Mail, Phone, MapPin } from 'lucide-react'
 
 const quickLinks = [
   { name: 'Accueil', path: '/' },
@@ -71,15 +71,15 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
-                {/* <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-1" /> */}
+                <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
                 <span className="text-gray-300">Abomey-Calavi, Zogbadjè, Bénin</span>
               </li>
               <li className="flex items-center space-x-3">
-                {/* <Phone className="h-5 w-5 text-accent" /> */}
+                <Phone className="h-5 w-5 text-accent" />
                 <span className="text-gray-300">+229 0140152443</span>
               </li>
               <li className="flex items-center space-x-3">
-                {/* <Mail className="h-5 w-5 text-accent" /> */}
+                <Mail className="h-5 w-5 text-accent" />
                 <span className="text-gray-300">aexpertise@gmail.com</span>
               </li>
             </ul>

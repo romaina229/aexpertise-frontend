@@ -4,9 +4,26 @@ import { motion } from 'framer-motion'
 import { 
   Calendar, Clock, Users, Award, 
   ArrowLeft, CheckCircle, UserPlus, 
-  X 
+  X, AlertCircle
 } from 'lucide-react'
 import api from '../services/api'
+import FormationStatus from '../components/common/FormationStatus'
+
+const ensureArray = (value) => {
+  if (Array.isArray(value)) return value
+  if (typeof value === 'string') {
+    try {
+      const parsed = JSON.parse(value)
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  }
+  if (value && typeof value === 'object') {
+    return Object.values(value)
+  }
+  return []
+}
 
 export default function FormationDetail() {
   const { id } = useParams()
@@ -24,12 +41,16 @@ export default function FormationDetail() {
   })
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const fetchFormation = async () => {
       try {
         const response = await api.get(`/formations/${id}`)
-        setFormation(response.data)
+        const data = response.data
+        data.objectives = ensureArray(data.objectives)
+        data.program = ensureArray(data.program)
+        setFormation(data)
       } catch (error) {
         console.error('Erreur:', error)
         setFormation({
@@ -37,13 +58,14 @@ export default function FormationDetail() {
           title: 'Gestion de projet agile',
           description: 'Maîtrisez les méthodologies agiles pour une gestion de projet efficace.',
           duration: '3 jours',
-          start_date: '2024-01-15',
-          end_date: '2024-01-17',
+          start_date: '2024-02-15',
+          end_date: '2024-02-17',
           category: 'Gestion de projet',
           price: '250 000 FCFA',
           level: 'Intermédiaire',
           max_participants: 20,
           current_participants: 15,
+          is_active: true,
           objectives: [
             'Comprendre les principes de l\'agilité',
             'Maîtriser les frameworks Scrum et Kanban',
@@ -65,9 +87,34 @@ export default function FormationDetail() {
     fetchFormation()
   }, [id])
 
+  const canRegister = () => {
+    if (!formation) return false
+    const now = new Date()
+    const start = new Date(formation.start_date)
+    const end = formation.end_date ? new Date(formation.end_date) : null
+    
+    if (!formation.is_active) return false
+    if (end && now > end) return false
+    if (formation.current_participants >= formation.max_participants) return false
+    if (now > start) return false
+    
+    return true
+  }
+
+  const getRegistrationButtonText = () => {
+    if (!formation) return "Chargement..."
+    if (!formation.is_active) return "Formation inactive"
+    if (formation.current_participants >= formation.max_participants) return "Formation complète"
+    if (new Date() > new Date(formation.end_date)) return "Formation expirée"
+    if (new Date() > new Date(formation.start_date)) return "Formation déjà commencée"
+    return "S'inscrire maintenant"
+  }
+
   const handleRegister = async (e) => {
     e.preventDefault()
     setSubmitting(true)
+    setError('')
+    
     try {
       await api.post('/registrations', {
         ...formData,
@@ -75,9 +122,16 @@ export default function FormationDetail() {
       })
       setSuccess(true)
       setShowRegistration(false)
+      
+      // Mettre à jour le nombre de participants
+      setFormation({
+        ...formation,
+        current_participants: formation.current_participants + 1
+      })
+      
       setTimeout(() => setSuccess(false), 5000)
     } catch (error) {
-      console.error('Erreur:', error)
+      setError(error.response?.data?.message || 'Une erreur est survenue')
     } finally {
       setSubmitting(false)
     }
@@ -116,7 +170,6 @@ export default function FormationDetail() {
 
   return (
     <div className="pt-20">
-      {/* Back button */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <button
           onClick={() => navigate(-1)}
@@ -127,7 +180,6 @@ export default function FormationDetail() {
         </button>
       </div>
 
-      {/* Header */}
       <section className="bg-gradient-to-r from-primary to-primary-light text-white py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -135,20 +187,27 @@ export default function FormationDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              {formation.category}
-            </span>
+            <div className="flex items-center gap-4 mb-4 flex-wrap">
+              <span className="inline-block bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold">
+                {formation.category}
+              </span>
+              <FormationStatus 
+                startDate={formation.start_date}
+                endDate={formation.end_date}
+                isActive={formation.is_active}
+                maxParticipants={formation.max_participants}
+                currentParticipants={formation.current_participants}
+              />
+            </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{formation.title}</h1>
             <p className="text-xl text-gray-200 max-w-3xl">{formation.description}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Details */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -158,12 +217,16 @@ export default function FormationDetail() {
               >
                 <h2 className="text-2xl font-bold text-primary mb-4">Objectifs de la formation</h2>
                 <ul className="space-y-3">
-                  {formation.objectives?.map((objective, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                      <span className="text-gray-700">{objective}</span>
-                    </li>
-                  ))}
+                  {formation.objectives && formation.objectives.length > 0 ? (
+                    formation.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                        <span className="text-gray-700">{objective}</span>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-gray-500">Aucun objectif spécifié</li>
+                  )}
                 </ul>
               </motion.div>
 
@@ -175,14 +238,18 @@ export default function FormationDetail() {
               >
                 <h2 className="text-2xl font-bold text-primary mb-4">Programme</h2>
                 <div className="space-y-4">
-                  {formation.program?.map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <span className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">
-                        {index + 1}
-                      </span>
-                      <span className="text-gray-700">{item}</span>
-                    </div>
-                  ))}
+                  {formation.program && formation.program.length > 0 ? (
+                    formation.program.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <span className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">
+                          {index + 1}
+                        </span>
+                        <span className="text-gray-700">{item}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-500">Aucun programme spécifié</p>
+                  )}
                 </div>
               </motion.div>
 
@@ -199,7 +266,6 @@ export default function FormationDetail() {
               )}
             </div>
 
-            {/* Sidebar */}
             <div className="lg:col-span-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -221,6 +287,21 @@ export default function FormationDetail() {
                       </p>
                     </div>
                   </div>
+                  {formation.end_date && (
+                    <div className="flex items-center gap-3">
+                      <Calendar className="h-5 w-5 text-primary" />
+                      <div>
+                        <p className="text-sm text-gray-500">Date de fin</p>
+                        <p className="font-semibold">
+                          {new Date(formation.end_date).toLocaleDateString('fr-FR', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-primary" />
                     <div>
@@ -233,7 +314,7 @@ export default function FormationDetail() {
                     <div>
                       <p className="text-sm text-gray-500">Participants</p>
                       <p className="font-semibold">
-                        {formation.current_participants}/{formation.max_participants}
+                        {formation.current_participants || 0}/{formation.max_participants}
                       </p>
                     </div>
                   </div>
@@ -250,18 +331,36 @@ export default function FormationDetail() {
                       {formation.price}
                     </p>
                     <p className="text-sm text-gray-500 text-center mb-4">Prix de la formation</p>
+                    
+                    {!canRegister() && (
+                      <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 p-3 rounded-lg mb-4 flex items-start gap-2">
+                        <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm">
+                          {!formation.is_active && "Cette formation est actuellement inactive"}
+                          {formation.current_participants >= formation.max_participants && "Cette formation est complète"}
+                          {new Date() > new Date(formation.end_date) && "Cette formation est expirée"}
+                          {new Date() > new Date(formation.start_date) && "Cette formation a déjà commencé"}
+                        </p>
+                      </div>
+                    )}
+
                     <button
                       onClick={() => setShowRegistration(true)}
-                      className="w-full flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25"
+                      disabled={!canRegister()}
+                      className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${
+                        canRegister()
+                          ? 'bg-accent text-white hover:bg-accent-dark shadow-lg shadow-accent/25'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
                     >
                       <UserPlus className="h-5 w-5" />
-                      S'inscrire maintenant
+                      {getRegistrationButtonText()}
                     </button>
                     <Link
                       to="/contact"
-                      className="block text-center text-primary hover:underline mt-3"
+                      className="block text-center text-primary hover:underline mt-3 text-sm"
                     >
-                      Nous contacter
+                      Nous contacter pour plus d'informations
                     </Link>
                   </div>
                 </div>
@@ -288,6 +387,13 @@ export default function FormationDetail() {
                 <X className="h-6 w-6 text-gray-500" />
               </button>
             </div>
+            
+            {error && (
+              <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4">
+                ❌ {error}
+              </div>
+            )}
+
             <form onSubmit={handleRegister} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -378,7 +484,7 @@ export default function FormationDetail() {
                   disabled={submitting}
                   className="flex-1 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary-light transition-colors disabled:opacity-50"
                 >
-                  {submitting ? 'Inscription...' : 'S\'inscrire'}
+                  {submitting ? 'Inscription...' : "S'inscrire"}
                 </button>
               </div>
             </form>
@@ -386,10 +492,9 @@ export default function FormationDetail() {
         </div>
       )}
 
-      {/* Success Notification */}
       {success && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 animate-fade-in">
-          <p className="font-semibold">✅ Inscription réussie !</p>
+          <p className="font-semibold">Inscription réussie !</p>
           <p className="text-sm">Vous recevrez un email de confirmation.</p>
         </div>
       )}

@@ -14,13 +14,15 @@ export default function FormationsSection() {
         const response = await api.get('/formations?limit=3')
         setFormations(response.data)
       } catch (error) {
+        console.error('Erreur lors du chargement des formations:', error)
+        // Données fictives si erreur
         setFormations([
           {
             id: 1,
             title: 'Gestion de projet agile',
             description: 'Maîtrisez les méthodologies agiles pour une gestion de projet efficace.',
             duration: '3 jours',
-            start_date: '2024-01-15',
+            start_date: '2024-02-15',
             category: 'Gestion de projet',
             price: '250 000 FCFA'
           },
@@ -29,7 +31,7 @@ export default function FormationsSection() {
             title: 'Digitalisation des données',
             description: 'Apprenez à collecter et analyser des données avec des outils digitaux.',
             duration: '2 jours',
-            start_date: '2024-01-22',
+            start_date: '2024-02-22',
             category: 'Digital',
             price: '200 000 FCFA'
           },
@@ -38,7 +40,7 @@ export default function FormationsSection() {
             title: 'Leadership et gestion d\'équipe',
             description: 'Développez vos compétences en leadership pour une équipe performante.',
             duration: '4 jours',
-            start_date: '2024-02-05',
+            start_date: '2024-03-05',
             category: 'Leadership',
             price: '300 000 FCFA'
           }

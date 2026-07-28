@@ -3,8 +3,9 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Calendar, Clock, Users, Search, ArrowRight } from 'lucide-react'
 import api from '../services/api'
+import FormationStatus from '../components/common/FormationStatus'
 
-const categories = ['Toutes', 'Gestion de projet', 'Digital', 'Leadership', 'Technique', 'Management']
+const categories = ['Toutes', 'Gestion de projet', 'Digital', 'Leadership', 'Technique', 'Management', 'Communication']
 
 export default function Formations() {
   const [formations, setFormations] = useState([])
@@ -14,100 +15,78 @@ export default function Formations() {
   const [selectedCategory, setSelectedCategory] = useState('Toutes')
 
   useEffect(() => {
-    const fetchFormations = async () => {
-      try {
-        const response = await api.get('/formations')
-        setFormations(response.data)
-        setFilteredFormations(response.data)
-      } catch (error) {
-        console.error('Erreur:', error)
-        // Données fictives
-        const mockData = [
-          {
-            id: 1,
-            title: 'Gestion de projet agile',
-            description: 'Maîtrisez les méthodologies agiles pour une gestion de projet efficace.',
-            duration: '3 jours',
-            start_date: '2024-01-15',
-            category: 'Gestion de projet',
-            price: '250 000 FCFA',
-            level: 'Intermédiaire',
-            max_participants: 20,
-            current_participants: 15
-          },
-          {
-            id: 2,
-            title: 'Digitalisation des données',
-            description: 'Apprenez à collecter et analyser des données avec des outils digitaux.',
-            duration: '2 jours',
-            start_date: '2024-01-22',
-            category: 'Digital',
-            price: '200 000 FCFA',
-            level: 'Débutant',
-            max_participants: 15,
-            current_participants: 12
-          },
-          {
-            id: 3,
-            title: 'Leadership et gestion d\'équipe',
-            description: 'Développez vos compétences en leadership pour une équipe performante.',
-            duration: '4 jours',
-            start_date: '2024-02-05',
-            category: 'Leadership',
-            price: '300 000 FCFA',
-            level: 'Avancé',
-            max_participants: 25,
-            current_participants: 18
-          },
-          {
-            id: 4,
-            title: 'Analyse de données avec Excel',
-            description: 'Maîtrisez les outils avancés d\'Excel pour l\'analyse de données.',
-            duration: '2 jours',
-            start_date: '2024-02-12',
-            category: 'Technique',
-            price: '150 000 FCFA',
-            level: 'Débutant',
-            max_participants: 20,
-            current_participants: 10
-          },
-          {
-            id: 5,
-            title: 'Management stratégique',
-            description: 'Les fondamentaux du management pour piloter votre organisation.',
-            duration: '5 jours',
-            start_date: '2024-02-20',
-            category: 'Management',
-            price: '350 000 FCFA',
-            level: 'Avancé',
-            max_participants: 30,
-            current_participants: 22
-          }
-        ]
-        setFormations(mockData)
-        setFilteredFormations(mockData)
-      } finally {
-        setLoading(false)
-      }
-    }
-
     fetchFormations()
   }, [])
 
+  const fetchFormations = async () => {
+    try {
+      const response = await api.get('/formations')
+      setFormations(response.data)
+      setFilteredFormations(response.data)
+    } catch (error) {
+      console.error('Erreur:', error)
+      const mockData = [
+        {
+          id: 1,
+          title: 'Gestion de projet agile',
+          description: 'Maîtrisez les méthodologies agiles pour une gestion de projet efficace.',
+          duration: '3 jours',
+          start_date: '2024-02-15',
+          end_date: '2024-02-17',
+          category: 'Gestion de projet',
+          price: '250 000 FCFA',
+          level: 'Intermédiaire',
+          max_participants: 20,
+          current_participants: 15,
+          is_active: true
+        },
+        {
+          id: 2,
+          title: 'Digitalisation des données',
+          description: 'Apprenez à collecter et analyser des données avec des outils digitaux.',
+          duration: '2 jours',
+          start_date: '2024-02-22',
+          end_date: '2024-02-23',
+          category: 'Digital',
+          price: '200 000 FCFA',
+          level: 'Débutant',
+          max_participants: 15,
+          current_participants: 12,
+          is_active: true
+        },
+        {
+          id: 3,
+          title: 'Leadership et gestion d\'équipe',
+          description: 'Développez vos compétences en leadership pour une équipe performante.',
+          duration: '4 jours',
+          start_date: '2024-03-05',
+          end_date: '2024-03-08',
+          category: 'Leadership',
+          price: '300 000 FCFA',
+          level: 'Avancé',
+          max_participants: 25,
+          current_participants: 18,
+          is_active: true
+        }
+      ]
+      setFormations(mockData)
+      setFilteredFormations(mockData)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     let result = formations
-
     if (selectedCategory !== 'Toutes') {
       result = result.filter(f => f.category === selectedCategory)
     }
-
     if (searchTerm) {
       result = result.filter(f =>
         f.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         f.description.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
-
     setFilteredFormations(result)
   }, [searchTerm, selectedCategory, formations])
 
@@ -136,6 +115,9 @@ export default function Formations() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Nos formations</h1>
             <p className="text-xl text-gray-200">
               Des programmes conçus pour développer vos compétences et booster votre carrière
+            </p>
+            <p className="text-sm text-gray-300 mt-2">
+              {formations.length} formations disponibles
             </p>
           </motion.div>
         </div>
@@ -199,9 +181,19 @@ export default function Formations() {
                 >
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full">
-                        {formation.category}
-                      </span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full">
+                          {formation.category}
+                        </span>
+                        {/* 👇 AJOUTER ICI - FormationStatus */}
+                        <FormationStatus 
+                          startDate={formation.start_date}
+                          endDate={formation.end_date}
+                          isActive={formation.is_active}
+                          maxParticipants={formation.max_participants}
+                          currentParticipants={formation.current_participants || 0}
+                        />
+                      </div>
                       <span className="text-accent font-bold text-lg">
                         {formation.price}
                       </span>
@@ -223,7 +215,7 @@ export default function Formations() {
                       </span>
                       <span className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
-                        {formation.current_participants}/{formation.max_participants}
+                        {formation.current_participants || 0}/{formation.max_participants}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">

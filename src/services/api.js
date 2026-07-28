@@ -202,3 +202,27 @@ export const getAuthToken = () => {
 // ==================== EXPORT PAR DÉFAUT ====================
 
 export default api
+
+// === Authentification ===
+export const authService = {
+  // Connexion
+  login: (credentials) => api.post('/login', credentials),
+  
+  // Déconnexion
+  logout: () => {
+    localStorage.removeItem('auth_token')
+    localStorage.removeItem('user')
+    delete api.defaults.headers.common['Authorization']
+  },
+  
+  // Vérifier si l'utilisateur est authentifié
+  isAuthenticated: () => {
+    return !!localStorage.getItem('auth_token')
+  },
+  
+  // Récupérer l'utilisateur connecté
+  getUser: () => {
+    const user = localStorage.getItem('user')
+    return user ? JSON.parse(user) : null
+  }
+}
