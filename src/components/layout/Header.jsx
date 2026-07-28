@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import logop from "../../assets/logop.png";
 
 const navItems = [
   { name: 'Accueil', path: '/' },
@@ -36,8 +37,11 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-primary-light">Expertise</span>
-            <span className="text-3xl font-black text-primary">A+</span>
+            <img 
+              src={logop} 
+              alt="Expertise A+" 
+              className="h-15 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

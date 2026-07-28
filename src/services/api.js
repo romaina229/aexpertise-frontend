@@ -24,13 +24,13 @@ api.interceptors.request.use(
     
     // Logging en développement
     if (import.meta.env.DEV) {
-      console.log(`🚀 ${config.method?.toUpperCase()} ${config.url}`, config.data || '')
+     // console.log(`🚀 ${config.method?.toUpperCase()} ${config.url}`, config.data || '')
     }
     
     return config
   },
   (error) => {
-    console.error('❌ Erreur de requête:', error)
+   // console.error('❌ Erreur de requête:', error)
     return Promise.reject(error)
   }
 )
@@ -40,7 +40,7 @@ api.interceptors.response.use(
   (response) => {
     // Logging en développement
     if (import.meta.env.DEV) {
-      console.log(`✅ ${response.status} ${response.config.url}`, response.data)
+      //console.log(`✅ ${response.status} ${response.config.url}`, response.data)
     }
     return response
   },
@@ -59,26 +59,26 @@ api.interceptors.response.use(
           }
           break
         case 403:
-          console.error('🔒 Accès interdit')
+          //console.error('🔒 Accès interdit')
           break
         case 404:
-          console.error('📄 Ressource non trouvée')
+          //console.error('📄 Ressource non trouvée')
           break
         case 422:
           // Erreur de validation
           if (data.errors) {
             const errorMessages = Object.values(data.errors).flat()
-            console.error('⚠️ Erreurs de validation:', errorMessages)
+            //console.error('⚠️ Erreurs de validation:', errorMessages)
           }
           break
         case 429:
-          console.error('⏳ Trop de requêtes, veuillez réessayer plus tard')
+          //console.error('⏳ Trop de requêtes, veuillez réessayer plus tard')
           break
         case 500:
-          console.error('💥 Erreur serveur')
+          //console.error('💥 Erreur serveur')
           break
         default:
-          console.error(`❌ Erreur ${status}:`, data?.message || 'Erreur inconnue')
+          //console.error(`❌ Erreur ${status}:`, data?.message || 'Erreur inconnue')
       }
       
       // Message d'erreur personnalisé
@@ -87,11 +87,11 @@ api.interceptors.response.use(
       
     } else if (error.request) {
       // La requête a été faite mais pas de réponse
-      console.error('🌐 Pas de réponse du serveur:', error.request)
+      //console.error('🌐 Pas de réponse du serveur:', error.request)
       error.userMessage = 'Impossible de contacter le serveur. Vérifiez votre connexion.'
     } else {
       // Erreur lors de la configuration de la requête
-      console.error('⚙️ Erreur de configuration:', error.message)
+      //console.error('⚙️ Erreur de configuration:', error.message)
       error.userMessage = 'Une erreur est survenue lors de la préparation de la requête.'
     }
     
