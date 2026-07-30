@@ -4,7 +4,20 @@ import { motion } from 'framer-motion'
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-primary via-primary to-primary-light text-white overflow-hidden min-h-[90vh] flex items-center">
+    <section className="relative text-white overflow-hidden min-h-[90vh] flex items-center">
+      {/* Photo de fond : formation professionnelle */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80"
+          alt="Formation professionnelle en entreprise"
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        {/* Overlay dégradé pour la lisibilité du texte */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-primary-light/80"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
+      </div>
+
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
@@ -17,9 +30,11 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block bg-accent/20 backdrop-blur-sm text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Formation professionnelle et conseil
-            </span>
+            <div className="flex justify-center mb-4 pt-4">
+              <span className="inline-block bg-accent/20 backdrop-blur-sm text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                Formation professionnelle et conseil
+              </span>
+            </div>
           </motion.div>
           
           <motion.h1

@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import AdminLayout from './components/admin/AdminLayout'
 import Login from './pages/Login'
@@ -22,6 +21,7 @@ import AdminFormations from './pages/admin/Formations'
 import AdminRegistrations from './pages/admin/Registrations'
 import AdminMessages from './pages/admin/Messages'
 import AdminFormationRequests from './pages/admin/FormationRequests'
+import AdminResources from './pages/admin/Resources' 
 import Settings from './pages/admin/Settings'
 
 // Protéger les routes admin
@@ -33,21 +33,9 @@ const ProtectedRoute = ({ children }) => {
   return children
 }
 
-// Remonte en haut de page à chaque changement de route
-const ScrollToTop = () => {
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-
-  return null
-}
-
 function App() {
   return (
     <Router>
-      <ScrollToTop />
       <Routes>
         {/* Routes publiques */}
         <Route path="/" element={<Layout><Home /></Layout>} />
@@ -75,6 +63,7 @@ function App() {
           <Route path="registrations" element={<AdminRegistrations />} />
           <Route path="messages" element={<AdminMessages />} />
           <Route path="formation-requests" element={<AdminFormationRequests />} />
+          <Route path="resources" element={<AdminResources />} />  
           <Route path="settings" element={<Settings />} />
         </Route>
 

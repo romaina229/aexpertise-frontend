@@ -41,13 +41,15 @@ export default function Dashboard() {
         api.get('/formations'),
         api.get('/registrations'),
         api.get('/contacts'),
-        api.get('/formation-requests')
+        api.get('/formation-requests'),
+        api.get('/resources')
       ])
 
       const formations = formationsRes.data || []
       const registrations = registrationsRes.data || []
       const messages = messagesRes.data || []
       const requests = requestsRes.data || []
+      const resources = resourcesRes.data || []
 
       // Statistiques des formations
       const now = new Date()
@@ -79,6 +81,15 @@ export default function Dashboard() {
         pending: requests.filter(r => r.status === 'pending').length,
         processing: requests.filter(r => r.status === 'processing').length,
         completed: requests.filter(r => r.status === 'completed').length
+      }
+
+      // Ajouter les statistiques des ressources
+      const resourcesStats = {
+        total: resources.length,
+        videos: resources.filter(r => r.type === 'video').length,
+        articles: resources.filter(r => r.type === 'article').length,
+        ebooks: resources.filter(r => r.type === 'ebook').length,
+        documents: resources.filter(r => r.type === 'document').length
       }
 
       // Activités récentes (mix des dernières actions)
@@ -132,7 +143,8 @@ export default function Dashboard() {
         messages: messagesStats,
         requests: requestsStats,
         recentActivities,
-        monthlyStats
+        monthlyStats,
+        resources: resourcesStats
       })
     } catch (err) {
       console.error('Erreur lors du chargement des données:', err)
@@ -188,6 +200,20 @@ export default function Dashboard() {
         { label: 'En attente', value: stats.requests.pending, color: 'text-yellow-600' },
         { label: 'En traitement', value: stats.requests.processing, color: 'text-blue-600' },
         { label: 'Traitées', value: stats.requests.completed, color: 'text-green-600' },
+      ]
+    },
+
+    { 
+      title: 'Ressources', 
+      value: stats.resources?.total || 0,
+      icon: FileText, 
+      color: 'from-indigo-500 to-indigo-600',
+      link: '/admin/resources',
+      subStats: [
+        { label: 'Vidéos', value: stats.resources?.videos || 0, color: 'text-red-600' },
+        { label: 'Articles', value: stats.resources?.articles || 0, color: 'text-blue-600' },
+        { label: 'E-books', value: stats.resources?.ebooks || 0, color: 'text-purple-600' },
+        { label: 'Documents', value: stats.resources?.documents || 0, color: 'text-green-600' },
       ]
     }
   ]

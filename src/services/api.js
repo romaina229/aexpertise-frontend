@@ -226,3 +226,33 @@ export const authService = {
     return user ? JSON.parse(user) : null
   }
 }
+
+// === Resources ===
+export const resourceService = {
+    // Récupérer toutes les ressources
+    getAll: (params = {}) => api.get('/resources', { params }),
+    
+    // Récupérer une ressource par ID
+    getById: (id) => api.get(`/resources/${id}`),
+    
+    // Créer une ressource
+    create: (data) => api.post('/resources', data),
+    
+    // Mettre à jour une ressource
+    update: (id, data) => api.put(`/resources/${id}`, data),
+    
+    // Supprimer une ressource
+    delete: (id) => api.delete(`/resources/${id}`),
+    
+    // Incrémenter les vues
+    incrementViews: (id) => api.post(`/resources/${id}/views`),
+    
+    // Incrémenter les téléchargements
+    incrementDownloads: (id) => api.post(`/resources/${id}/downloads`),
+    
+    // Activer/Désactiver
+    toggleActive: (id) => api.post(`/resources/${id}/toggle-active`),
+    
+    // Mettre en avant
+    toggleFeatured: (id) => api.post(`/resources/${id}/toggle-featured`),
+}

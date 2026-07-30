@@ -10,6 +10,7 @@ import {
   LogOut,
   Menu,
   X,
+  FileText,  
   ChevronDown
 } from 'lucide-react'
 
@@ -19,6 +20,7 @@ const menuItems = [
   { name: 'Inscriptions', path: '/admin/registrations', icon: Users },
   { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
   { name: 'Demandes de formation', path: '/admin/formation-requests', icon: CalendarCheck },
+  { name: 'Ressources', path: '/admin/resources', icon: FileText },  
   { name: 'Paramètres', path: '/admin/settings', icon: Settings },
 ]
 
@@ -28,6 +30,7 @@ export default function AdminLayout() {
 
   const handleLogout = () => {
     localStorage.removeItem('auth_token')
+    localStorage.removeItem('user')
     navigate('/login')
   }
 
@@ -40,7 +43,7 @@ export default function AdminLayout() {
         {/* Logo */}
         <div className="flex items-center justify-between p-4 border-b border-primary-light">
           <Link to="/admin" className="flex items-center gap-2">
-            <span className="text-2xl font-bold">A+</span>
+            <span className="text-2xl font-bold">À+</span>
             {sidebarOpen && <span className="text-lg">Admin</span>}
           </Link>
           <button
@@ -52,7 +55,7 @@ export default function AdminLayout() {
         </div>
 
         {/* Menu */}
-        <nav className="p-4 space-y-1">
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-8rem)]">
           {menuItems.map((item) => (
             <NavLink
               key={item.path}
@@ -72,7 +75,7 @@ export default function AdminLayout() {
         </nav>
 
         {/* Footer */}
-        <div className="absolute bottom-0 w-full p-4 border-t border-primary-light">
+        <div className="absolute bottom-0 w-full p-4 border-t border-primary-light bg-primary">
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-4 py-3 rounded-lg hover:bg-primary-light transition-colors text-gray-200"
