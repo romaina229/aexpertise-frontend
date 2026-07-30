@@ -4,24 +4,24 @@ import { Target, Lightbulb, Heart, Users, CheckCircle, ArrowRight } from 'lucide
 
 const teamMembers = [
   {
-    name: 'Jonas Towanou AGBOKO',
+    name: 'Jonas T. AGBOKO',
     position: 'Fondateur & Directeur',
-    image: 'https://ui-avatars.com/api/?name=Amadou+Diop&size=200&background=1a3c5e&color=fff'
+    image: 'https://media.licdn.com/dms/image/v2/D4E03AQFyZ2h5HOuiVg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721505256284?e=1787184000&v=beta&t=5KbwvvEj_kXAZQnwEbpMC-jXLTsSBBW8ZFhOueRIE-M'
   },
   {
-    name: 'Fatou Sow',
+    name: 'Faustin GNANGUENON',
     position: 'Directrice Pédagogique',
-    image: 'https://ui-avatars.com/api/?name=Fatou+Sow&size=200&background=1a3c5e&color=fff'
+    image: 'https://media.licdn.com/dms/image/v2/D4E03AQFk5t-ce63V8Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1694738502870?e=1787184000&v=beta&t=qYHvT6EPM5odPoY-vWYUvqk4UM_li0REOCybXjET1Hk'
   },
   {
     name: 'Romain AKPO',
     position: 'Expert en Digitalisation',
-    image: 'https://ui-avatars.com/api/?name=Ibrahim+Traoré&size=200&background=1a3c5e&color=fff'
+    image: 'https://media.licdn.com/dms/image/v2/D4E03AQGLAUD4g99L-A/profile-displayphoto-scale_400_400/B4EZ91WzKEIsAg-/0/1784380343544?e=1787184000&v=beta&t=473WRJt7dUqY2FagUvRQnIPLif3dhYhPmx_CAlo4zq4'
   },
   {
-    name: 'Raphaël SOKE',
+    name: 'Raphaël T. SOKE',
     position: 'Consultante Senior',
-    image: 'https://ui-avatars.com/api/?name=Awa+Ndiaye&size=200&background=1a3c5e&color=fff'
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQEoLQ7uyvbSdg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667162514265?e=1787184000&v=beta&t=6iUKGwLn3CcSRZFlH_f46iIAJ_1ZoxohyJTtWWQq8CY'
   }
 ]
 
