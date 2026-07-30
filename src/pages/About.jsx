@@ -10,7 +10,7 @@ const teamMembers = [
   },
   {
     name: 'Faustin GNANGUENON',
-    position: 'Directrice Pédagogique',
+    position: 'Directeur Pédagogique',
     image: 'https://media.licdn.com/dms/image/v2/D4E03AQFk5t-ce63V8Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1694738502870?e=1787184000&v=beta&t=qYHvT6EPM5odPoY-vWYUvqk4UM_li0REOCybXjET1Hk'
   },
   {
