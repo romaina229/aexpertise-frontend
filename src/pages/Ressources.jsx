@@ -2,12 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { 
   FileText, Video, Book, Search, 
-  Filter, ExternalLink, Download, File as FileIcon,
+  ExternalLink, Download, File as FileIcon,
   Play, Eye, Calendar, Tag, X
 } from 'lucide-react'
 import { resourceService } from '../services/api'
 
-const categories = ['Toutes', 'Gestion de projet', 'Digital', 'Leadership', 'Technique', 'Management', 'Communication']
 const types = ['Tous', 'article', 'video', 'ebook', 'document']
 
 const typeLabels = {
@@ -36,7 +35,6 @@ export default function Ressources() {
   const [filteredResources, setFilteredResources] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('Toutes')
   const [selectedType, setSelectedType] = useState('Tous')
   const [selectedResource, setSelectedResource] = useState(null)
   const [showVideoModal, setShowVideoModal] = useState(false)
@@ -64,9 +62,6 @@ export default function Ressources() {
 
   useEffect(() => {
     let result = resources
-    if (selectedCategory !== 'Toutes') {
-      result = result.filter(r => r.category === selectedCategory)
-    }
     if (selectedType !== 'Tous') {
       result = result.filter(r => r.type === selectedType)
     }
@@ -77,7 +72,7 @@ export default function Ressources() {
       )
     }
     setFilteredResources(result)
-  }, [searchTerm, selectedCategory, selectedType, resources])
+  }, [searchTerm, selectedType, resources])
 
   const handleResourceClick = async (resource) => {
     if (resource.type === 'video') {
@@ -188,22 +183,6 @@ export default function Ressources() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
-            </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              <Filter className="h-5 w-5 text-gray-400 mt-2 flex-shrink-0" />
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-primary text-white'
-                      : 'bg-white text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
             </div>
           </div>
           <div className="flex gap-2 overflow-x-auto mt-4">

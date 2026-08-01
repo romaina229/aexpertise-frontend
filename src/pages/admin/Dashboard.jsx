@@ -8,7 +8,7 @@ import {
   CalendarCheck,
   TrendingUp,
   Eye,
-  Clock,
+  Clock, FileText,
   CheckCircle,
   XCircle
 } from 'lucide-react'
