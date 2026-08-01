@@ -8,9 +8,10 @@ import {
   CalendarCheck,
   TrendingUp,
   Eye,
-  Clock, FileText,
+  Clock,
   CheckCircle,
-  XCircle
+  XCircle,
+  FileText
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
@@ -37,7 +38,7 @@ export default function Dashboard() {
       setLoading(true)
       
       // Récupérer toutes les données en parallèle
-      const [formationsRes, registrationsRes, messagesRes, requestsRes] = await Promise.all([
+      const [formationsRes, registrationsRes, messagesRes, requestsRes, resourcesRes] = await Promise.all([
         api.get('/formations'),
         api.get('/registrations'),
         api.get('/contacts'),
