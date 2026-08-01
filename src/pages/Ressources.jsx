@@ -51,7 +51,7 @@ export default function Ressources() {
       setResources(response.data)
       setFilteredResources(response.data)
     } catch (error) {
-      console.error('Erreur lors du chargement des ressources:', error)
+      //console.error('Erreur lors du chargement des ressources:', error)
       // Données fictives en cas d'erreur
       setResources([])
       setFilteredResources([])
@@ -91,7 +91,7 @@ export default function Ressources() {
           )
         )
       } catch (error) {
-        console.error('Erreur lors du comptage des vues:', error)
+        //console.error('Erreur lors du comptage des vues:', error)
       }
     } else {
       // Pour les autres types, ouvrir dans un nouvel onglet
@@ -108,7 +108,7 @@ export default function Ressources() {
             )
           )
         } catch (error) {
-          console.error('Erreur lors du comptage des téléchargements:', error)
+          //console.error('Erreur lors du comptage des téléchargements:', error)
         }
       }
     }
@@ -171,7 +171,7 @@ export default function Ressources() {
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-gray-50 border-b sticky top-20 z-20">
+      <section className="py-8 bg-gray-50 border-b top-20 z-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
