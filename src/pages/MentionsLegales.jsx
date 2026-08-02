@@ -177,8 +177,8 @@ export default function MentionsLegales() {
                     <strong>Pour exercer ce droit :</strong>
                   </p>
                   <ul className="list-disc list-inside space-y-1 pl-4">
-                    <li>Par email : contact@aaexpertise.com</li>
-                    <li>Par courrier : 123 Avenue des Nations, Cotonou, Bénin</li>
+                    <li>Par email : expertisea@gmail.com</li>
+                    <li>Par courrier : Abomey-Calavi, Zogbadjè, Bénin</li>
                     <li>Via le formulaire de contact du site</li>
                   </ul>
                   <div className="bg-primary/5 p-4 rounded-lg border border-primary/10">

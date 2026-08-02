@@ -338,7 +338,7 @@ export default function FormationDetail() {
                         <p className="text-sm">
                           {!formation.is_active && "Cette formation est actuellement inactive"}
                           {formation.current_participants >= formation.max_participants && "Cette formation est complète"}
-                          {new Date() > new Date(formation.end_date) && "Cette formation est expirée"}
+                          {new Date() > new Date(formation.end_date) && "Cette formation est expirée"} <br />
                           {new Date() > new Date(formation.start_date) && "Cette formation a déjà commencé"}
                         </p>
                       </div>
